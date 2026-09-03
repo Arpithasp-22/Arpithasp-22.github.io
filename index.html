@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arpitha Satish Punya — AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c10;
+    --surface:#12151b;
+    --surface-2:#171b22;
+    --hair:#262b33;
+    --hair-soft:#191d24;
+    --ink:#eeece7;
+    --ink-dim:#8f95a0;
+    --ink-faint:#575d68;
+    --brass:#e3b34d;
+    --brass-dim:#8a6d2a;
+
+    --acc-eval:#5eead4;
+    --acc-health:#a78bfa;
+    --acc-star:#fbbf24;
+    --acc-chat:#34d399;
+    --acc-poc:#fb7185;
+    --acc-rag:#60a5fa;
+
+    --red:#f87171;
+    --amber:#fbbf24;
+    --green:#34d399;
+    --max:840px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:"";
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      radial-gradient(1px 1px at 20px 30px, rgba(238,236,231,0.32) 50%, transparent 51%),
+      radial-gradient(1px 1px at 140px 80px, rgba(238,236,231,0.22) 50%, transparent 51%),
+      radial-gradient(1px 1px at 60px 160px, rgba(238,236,231,0.28) 50%, transparent 51%),
+      radial-gradient(1px 1px at 220px 220px, rgba(238,236,231,0.18) 50%, transparent 51%),
+      radial-gradient(1px 1px at 320px 60px, rgba(238,236,231,0.22) 50%, transparent 51%),
+      radial-gradient(1px 1px at 380px 300px, rgba(238,236,231,0.28) 50%, transparent 51%);
+    background-repeat:repeat; background-size:420px 420px; opacity:0.5;
+  }
+
+  a{color:inherit;}
+  ::selection{background:var(--brass-dim); color:var(--bg);}
+  button{font-family:inherit; cursor:pointer;}
+
+  .wrap{position:relative; z-index:1; max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(10,12,16,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--hair-soft);
+  }
+  nav .wrap{display:flex; justify-content:space-between; align-items:center; padding:18px 28px;}
+  .nav-name{font-family:'Source Serif 4', serif; font-size:16px; font-weight:500;}
+  .nav-links{display:flex; gap:28px; font-size:14px; color:var(--ink-dim);}
+  .nav-links a{text-decoration:none; transition:color .15s ease; position:relative;}
+  .nav-links a:hover{color:var(--ink);}
+
+  /* ---------- hero ---------- */
+  .hero-outer{position:relative; overflow:hidden;}
+  .aurora{position:absolute; inset:-20% -10%; z-index:0; pointer-events:none; filter:blur(70px); opacity:.55;}
+  .aurora span{position:absolute; border-radius:50%; mix-blend-mode:screen;}
+  .aurora span.a1{width:340px; height:340px; background:var(--brass); top:-60px; left:0; animation:drift1 26s ease-in-out infinite;}
+  .aurora span.a2{width:300px; height:300px; background:var(--acc-eval); top:40px; left:280px; animation:drift2 32s ease-in-out infinite;}
+  .aurora span.a3{width:280px; height:280px; background:var(--acc-health); top:120px; left:520px; animation:drift3 29s ease-in-out infinite;}
+  .aurora span.a4{width:260px; height:260px; background:var(--acc-poc); top:-40px; left:640px; animation:drift1 24s ease-in-out infinite reverse;}
+  .aurora span.a5{width:240px; height:240px; background:var(--acc-rag); top:160px; left:400px; animation:drift3 27s ease-in-out infinite reverse;}
+  @keyframes drift1{0%,100%{transform:translate(0,0);}50%{transform:translate(30px,40px);}}
+  @keyframes drift2{0%,100%{transform:translate(0,0);}50%{transform:translate(-40px,25px);}}
+  @keyframes drift3{0%,100%{transform:translate(0,0);}50%{transform:translate(20px,-35px);}}
+  @media (prefers-reduced-motion: reduce){.aurora span{animation:none;}}
+
+  header.hero{padding:96px 28px 76px; max-width:840px; margin:0 auto; position:relative; z-index:1; opacity:0; animation:rise .9s ease-out .1s forwards;}
+  @keyframes rise{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){header.hero{animation:none; opacity:1;}}
+
+  .kicker{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--brass); margin-bottom:22px; display:flex; align-items:center; gap:8px;}
+  .kicker::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--brass); box-shadow:0 0 8px var(--brass);}
+
+  h1.name{
+    font-family:'Source Serif 4', serif; font-weight:500;
+    font-size:clamp(38px, 6vw, 58px); line-height:1.08; margin:0 0 22px; letter-spacing:-0.01em; max-width:13ch;
+    background:linear-gradient(100deg, var(--brass) 0%, var(--acc-star) 25%, var(--acc-health) 55%, var(--acc-eval) 85%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  .hero-lede{font-size:18px; line-height:1.7; color:var(--ink-dim); max-width:56ch; margin:0 0 32px;}
+  .hero-lede strong{color:var(--ink); font-weight:500;}
+
+  .hero-links{display:flex; gap:22px; font-size:14px; flex-wrap:wrap;}
+  .hero-links a{text-decoration:none; border-bottom:1px solid var(--hair); padding-bottom:2px; color:var(--ink); transition:border-color .15s ease, color .15s ease;}
+  .hero-links a:hover{border-color:var(--brass); color:var(--brass);}
+
+  /* ---------- sections ---------- */
+  .section{max-width:840px; margin:0 auto; padding:64px 28px; border-top:1px solid var(--hair-soft); position:relative; z-index:1;}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:40px; gap:16px;}
+  .section-title{font-family:'Source Serif 4', serif; font-size:26px; font-weight:500; margin:0;}
+  .section-note{font-size:13px; color:var(--ink-faint); font-family:'IBM Plex Mono', monospace; text-align:right;}
+
+  .about-text{max-width:64ch; color:var(--ink-dim); font-size:16px;}
+  .about-text p{margin:0 0 18px;}
+  .about-text p:last-child{margin-bottom:0;}
+  .about-text .thesis{color:var(--ink);}
+
+  /* ---------- project cards ---------- */
+  .project{
+    padding:30px 24px; margin-bottom:18px;
+    border:1px solid var(--hair); border-left:3px solid var(--accent, var(--brass));
+    border-radius:10px; background:var(--surface);
+    transition:border-color .2s ease, background .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .project:hover{background:var(--surface-2); box-shadow:0 0 0 1px var(--hair), 0 14px 32px -18px var(--accent, var(--brass));}
+
+  .project-top{display:grid; grid-template-columns:56px 1fr; gap:20px;}
+  .project-log{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--accent, var(--brass-dim)); padding-top:5px;}
+
+  .title-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:10px;}
+  .project-title{font-family:'Source Serif 4', serif; font-size:21px; font-weight:500; margin:0;}
+  .badge{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.02em;
+    color:var(--accent); border:1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    background:color-mix(in srgb, var(--accent) 12%, transparent);
+    padding:3px 8px; border-radius:100px;
+  }
+
+  .project-desc{color:var(--ink-dim); font-size:15px; max-width:60ch; margin:0 0 18px;}
+  .project-meta{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px 18px;}
+  .stack{display:flex; flex-wrap:wrap; gap:8px 12px; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint);}
+  .stack span:not(:last-child)::after{content:"·"; margin-left:12px; color:var(--hair);}
+
+  .actions{display:flex; align-items:center; gap:20px; flex-wrap:wrap;}
+  .project-link{font-size:13px; text-decoration:none; color:var(--ink-dim); border-bottom:1px solid transparent; transition:border-color .15s ease, color .15s ease; white-space:nowrap;}
+  .project-link:hover{color:var(--ink); border-color:var(--ink-dim);}
+
+  .demo-toggle{
+    display:inline-flex; align-items:center; gap:8px;
+    background:transparent; border:1px solid color-mix(in srgb, var(--accent) 50%, var(--hair));
+    color:var(--accent); font-size:13px; padding:8px 14px; border-radius:8px;
+    transition:background .15s ease, color .15s ease;
+  }
+  .demo-toggle:hover{background:color-mix(in srgb, var(--accent) 16%, transparent);}
+  .demo-toggle svg{width:11px; height:11px; transition:transform .3s ease;}
+  .demo-toggle.open svg{transform:rotate(180deg);}
+
+  .demo-wrap{display:grid; grid-template-rows:0fr; transition:grid-template-rows .4s ease;}
+  .demo-wrap.open{grid-template-rows:1fr;}
+  .demo-inner{overflow:hidden;}
+  .demo-panel{
+    margin-top:22px; padding-top:22px; border-top:1px dashed var(--hair);
+  }
+  .demo-blurb{font-size:13px; color:var(--ink-faint); margin:0 0 18px; max-width:60ch;}
+
+  /* generic demo bits */
+  .chip-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;}
+  .chip-btn{
+    background:var(--surface-2); border:1px solid var(--hair); color:var(--ink);
+    font-size:13px; padding:9px 14px; border-radius:8px; transition:border-color .15s ease, background .15s ease;
+  }
+  .chip-btn:hover{border-color:var(--accent);}
+  .chip-btn.active{border-color:var(--accent); background:color-mix(in srgb, var(--accent) 14%, var(--surface-2)); color:var(--ink);}
+
+  .status-line{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--accent); min-height:18px; margin-bottom:14px;}
+
+  .bar-row{display:grid; grid-template-columns:120px 1fr 64px; align-items:center; gap:12px; margin-bottom:11px; font-size:13px;}
+  .bar-row .lbl{color:var(--ink-dim);}
+  .bar-track{height:8px; border-radius:5px; background:var(--hair-soft); overflow:hidden;}
+  .bar-fill{height:100%; width:0%; border-radius:5px; background:var(--accent); transition:width .7s ease;}
+  .bar-val{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint); text-align:right;}
+
+  .slider-row{margin-bottom:16px;}
+  .slider-row .slabel{display:flex; justify-content:space-between; font-size:13px; color:var(--ink-dim); margin-bottom:6px;}
+  .slider-row .slabel b{color:var(--ink); font-family:'IBM Plex Mono', monospace; font-weight:400;}
+  input[type=range]{
+    -webkit-appearance:none; width:100%; height:4px; border-radius:3px; background:var(--hair); outline:none;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:15px; height:15px; border-radius:50%;
+    background:var(--accent); cursor:pointer; border:2px solid var(--bg); box-shadow:0 0 0 1px var(--accent);
+  }
+  input[type=range]::-moz-range-thumb{
+    width:15px; height:15px; border-radius:50%; background:var(--accent); cursor:pointer; border:2px solid var(--bg);
+  }
+
+  .rag-result{display:flex; align-items:center; gap:16px; margin-top:6px; flex-wrap:wrap;}
+  .rag-badge{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; padding:8px 16px; border-radius:8px; font-weight:500;
+    display:inline-flex; align-items:center; gap:8px;
+  }
+  .rag-badge .dot{width:8px; height:8px; border-radius:50%;}
+  .rag-explain{font-size:13.5px; color:var(--ink-dim); max-width:44ch;}
+  .rag-conf{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint); margin-top:8px;}
+
+  .canvas-wrap{position:relative; border:1px solid var(--hair); border-radius:8px; overflow:hidden; background:#000; margin-bottom:14px;}
+  .canvas-wrap canvas{display:block; width:100%; height:auto;}
+  .canvas-wrap canvas.overlay{position:absolute; top:0; left:0;}
+  .legend{display:flex; gap:18px; font-size:12px; color:var(--ink-faint); margin-bottom:14px; flex-wrap:wrap;}
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .legend .sw{width:9px; height:9px; border-radius:50%;}
+
+  .chat-box{
+    border:1px solid var(--hair); border-radius:8px; background:var(--surface-2);
+    height:230px; overflow-y:auto; padding:14px; margin-bottom:14px; display:flex; flex-direction:column; gap:10px;
+  }
+  .msg{max-width:80%; padding:9px 13px; border-radius:12px; font-size:13.5px; line-height:1.5;}
+  .msg.user{align-self:flex-end; background:color-mix(in srgb, var(--accent) 25%, var(--surface-2)); border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);}
+  .msg.bot{align-self:flex-start; background:var(--bg); border:1px solid var(--hair); color:var(--ink-dim);}
+  .chat-input-row{display:flex; gap:10px;}
+  .chat-input-row input[type=text]{
+    flex:1; background:var(--surface-2); border:1px solid var(--hair); color:var(--ink);
+    border-radius:8px; padding:10px 12px; font-family:inherit; font-size:13.5px;
+  }
+  .chat-input-row input[type=text]:focus{outline:none; border-color:var(--accent);}
+  .chat-send{background:var(--accent); border:none; color:var(--bg); font-size:13px; font-weight:500; padding:0 16px; border-radius:8px;}
+
+  .tab-row{display:flex; gap:8px; margin-bottom:18px;}
+  .tab-btn{background:transparent; border:1px solid var(--hair); color:var(--ink-dim); font-size:13px; padding:7px 13px; border-radius:100px;}
+  .tab-btn.active{border-color:var(--accent); color:var(--ink); background:color-mix(in srgb, var(--accent) 14%, transparent);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .swatch-row{display:flex; gap:24px; align-items:flex-end; margin-bottom:18px; flex-wrap:wrap;}
+  .swatch{width:96px;}
+  .swatch .box{height:64px; border-radius:8px; border:1px solid var(--hair); margin-bottom:8px;}
+  .swatch .lbl{font-size:11.5px; color:var(--ink-faint); margin-bottom:2px;}
+  .swatch .hex{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink);}
+
+  .trend-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px;}
+  .trend-item{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    background:var(--surface-2); border:1px solid var(--hair); border-radius:8px; padding:10px 14px; font-size:13.5px;
+    transition:transform .3s ease;
+  }
+  .trend-item .rank{font-family:'IBM Plex Mono', monospace; color:var(--accent); font-size:12px; width:22px;}
+  .trend-item .score{font-family:'IBM Plex Mono', monospace; color:var(--ink-faint); font-size:12px;}
+
+  .rag-answer-box{
+    background:var(--surface-2); border:1px solid var(--hair); border-radius:8px;
+    padding:16px; font-size:14.5px; line-height:1.75; margin-bottom:14px;
+  }
+  .rag-sentence{padding:1px 2px; border-radius:3px;}
+  .rag-sentence.grounded{color:var(--ink);}
+  .rag-sentence.ungrounded{color:var(--red); background:rgba(248,113,113,0.1); text-decoration:underline wavy rgba(248,113,113,0.5);}
+  .rag-metric-row{display:flex; gap:28px; flex-wrap:wrap; margin-bottom:18px;}
+  .rag-metric{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint);}
+  .rag-metric b{display:block; font-size:18px; color:var(--acc-rag); font-family:'IBM Plex Sans',sans-serif; font-weight:600; margin-top:2px;}
+  .rag-source-item{
+    border:1px solid var(--hair); border-radius:8px; padding:12px 14px; margin-bottom:10px; background:var(--surface);
+  }
+  .rag-source-item .rst{font-size:13.5px; font-weight:500; margin-bottom:4px;}
+  .rag-source-item .rsc{font-size:12.5px; color:var(--ink-dim); margin-bottom:6px;}
+  .rag-source-item a{font-size:12px; color:var(--acc-rag); text-decoration:none;}
+  .rag-source-item a:hover{text-decoration:underline;}
+
+  /* ---------- skills ---------- */
+  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px 32px;}
+  .skill-group h3{font-family:'IBM Plex Mono', monospace; font-weight:400; font-size:12px; color:var(--ink-faint); margin:0 0 12px;}
+  .skill-group p{margin:0; font-size:15px; color:var(--ink); line-height:1.8;}
+
+  /* ---------- footer ---------- */
+  footer{max-width:840px; margin:0 auto; padding:64px 28px 80px; border-top:1px solid var(--hair-soft); position:relative; z-index:1;}
+  footer .section-title{margin-bottom:16px;}
+  footer p{color:var(--ink-dim); max-width:52ch; margin:0 0 28px; font-size:15px;}
+  .contact-links{display:flex; gap:24px; flex-wrap:wrap; margin-bottom:56px;}
+  .contact-links a{text-decoration:none; font-size:15px; border-bottom:1px solid var(--hair); padding-bottom:2px; transition:border-color .15s ease, color .15s ease;}
+  .contact-links a:hover{border-color:var(--brass); color:var(--brass);}
+  .foot-note{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint);}
+
+  @media (max-width:600px){
+    .project-top{grid-template-columns:1fr; gap:6px;}
+    .project-log{padding-top:0;}
+    .skills-grid{grid-template-columns:1fr;}
+    header.hero{padding:64px 22px 56px;}
+    .section{padding:48px 22px;}
+    .bar-row{grid-template-columns:90px 1fr 50px;}
+  }
+
+  :focus-visible{outline:2px solid var(--brass); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-name">Arpitha Satish Punya</div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero-outer">
+  <div class="aurora"><span class="a1"></span><span class="a2"></span><span class="a3"></span><span class="a4"></span><span class="a5"></span></div>
+  <header class="hero wrap">
+    <div class="kicker">AI / ML engineer</div>
+    <h1 class="name">Systems that show their work.</h1>
+    <p class="hero-lede">
+      I build AI and computer-vision tools where the interesting part isn't the model —
+      it's <strong>how you know it's right</strong>. Deterministic scoring instead of
+      black-box judgment, measured latency and hallucination rates instead of vibes,
+      sub-pixel accuracy instead of "looks about right." Every project below has a
+      small live demo — try it before you read the code.
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/Arpithasp-22" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="#work">See the work</a>
+    </div>
+  </header>
+</div>
+
+<section class="section" id="work">
+  <div class="section-head">
+    <h2 class="section-title">Selected work</h2>
+    <div class="section-note">6 projects, 6 demos</div>
+  </div>
+
+  <!-- PROJECT 1: LLM Eval -->
+  <article class="project" style="--accent:var(--acc-eval)">
+    <div class="project-top">
+      <div class="project-log">LOG 01</div>
+      <div>
+        <div class="title-row">
+          <h3 class="project-title">LLM Evaluation & Monitoring Framework</h3>
+          <span class="badge">interactive demo</span>
+        </div>
+        <p class="project-desc">
+          A benchmarking pipeline that runs a curated golden dataset against multiple LLM
+          providers and grades every response on accuracy, hallucination rate, refusal
+          behaviour, and latency (p50/p95) — turning "does this feel right" into a
+          comparable, trackable report across runs and models.
+        </p>
+        <div class="project-meta">
+          <div class="stack"><span>Python</span><span>pandas</span><span>Model adapters</span></div>
+          <div class="actions">
+            <button class="demo-toggle" data-target="demo-eval">Try the demo <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <a class="project-link" href="https://github.com/Arpithasp-22/Automated-LLM-Evaluation-Pipeline" target="_blank" rel="noopener">View code ↗</a>
+          </div>
+        </div>
+
+        <div class="demo-wrap" id="demo-eval">
+          <div class="demo-inner">
+            <div class="demo-panel">
+              <p class="demo-blurb">Pick a model to run it against the golden dataset. Scores below are a saved sample run from the framework — re-run the real thing from the repo for live numbers.</p>
+              <div class="chip-row" id="eval-picker">
+                <button class="chip-btn" data-model="gpt4o">GPT-4o-mini</button>
+                <button class="chip-btn" data-model="gemini">Gemini Flash</button>
+                <button class="chip-btn" data-model="llama">Local Llama-3-8B</button>
+              </div>
+              <div class="status-line" id="eval-status">Select a model to run the evaluation.</div>
+              <div id="eval-bars"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 2: Health agent -->
+  <article class="project" style="--accent:var(--acc-health)">
+    <div class="project-top">
+      <div class="project-log">LOG 02</div>
+      <div>
+        <div class="title-row">
+          <h3 class="project-title">Evidence-Based Project Health Agent</h3>
+          <span class="badge">interactive demo</span>
+        </div>
+        <p class="project-desc">
+          A project-health reporting agent for enterprise implementations that scores
+          risk deterministically across four dimensions — schedule, execution,
+          milestones, blockers — before an LLM ever sees the data. Gemini's only job
+          is to explain the number and write the narrative; it never decides the
+          rating. Outputs weekly reports and a six-slide executive deck.
+        </p>
+        <div class="project-meta">
+          <div class="stack"><span>Python</span><span>Gemini API</span><span>python-pptx</span></div>
+          <div class="actions">
+            <button class="demo-toggle" data-target="demo-health">Try the demo <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <a class="project-link" href="https://github.com/Arpithasp-22/zycus" target="_blank" rel="noopener">View code ↗</a>
+          </div>
+        </div>
+
+        <div class="demo-wrap" id="demo-health">
+          <div class="demo-inner">
+            <div class="demo-panel">
+              <p class="demo-blurb">Move the sliders the way a project's numbers might move. The RAG rating and explanation update live from a fixed, deterministic formula — no model in the loop.</p>
+
+              <div class="slider-row">
+                <div class="slabel"><span>Schedule</span><b id="v-schedule">60</b></div>
+                <input type="range" min="0" max="100" value="60" id="s-schedule">
+              </div>
+              <div class="slider-row">
+                <div class="slabel"><span>Execution</span><b id="v-execution">55</b></div>
+                <input type="range" min="0" max="100" value="55" id="s-execution">
+              </div>
+              <div class="slider-row">
+                <div class="slabel"><span>Milestones</span><b id="v-milestones">68</b></div>
+                <input type="range" min="0" max="100" value="68" id="s-milestones">
+              </div>
+              <div class="slider-row">
+                <div class="slabel"><span>Blockers</span><b id="v-blockers">80</b></div>
+                <input type="range" min="0" max="100" value="80" id="s-blockers">
+              </div>
+
+              <div class="rag-result">
+                <span class="rag-badge" id="rag-badge"><span class="dot"></span><span id="rag-label">—</span></span>
+                <span class="rag-explain" id="rag-explain"></span>
+              </div>
+              <div class="rag-conf" id="rag-conf"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 3: milkyway -->
+  <article class="project" style="--accent:var(--acc-star)">
+    <div class="project-top">
+      <div class="project-log">LOG 03</div>
+      <div>
+        <div class="title-row">
+          <h3 class="project-title">Astronomical Image Processing for Star Tracking</h3>
+          <span class="badge">interactive demo</span>
+        </div>
+        <p class="project-desc">
+          A classical, deterministic computer-vision pipeline modelled on spacecraft
+          star trackers: synthetic star fields and motion streaks, blob detection via
+          thresholding and connected components, then sub-pixel centroid refinement
+          with a 2D Gaussian fit — explainable algorithms over deep learning, the way
+          aerospace imaging systems usually have to work.
+        </p>
+        <div class="project-meta">
+          <div class="stack"><span>Python</span><span>NumPy / SciPy</span><span>OpenCV</span></div>
+          <div class="actions">
+            <button class="demo-toggle" data-target="demo-star">Try the demo <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <a class="project-link" href="https://github.com/Arpithasp-22/milkyway" target="_blank" rel="noopener">View code ↗</a>
+          </div>
+        </div>
+
+        <div class="demo-wrap" id="demo-star">
+          <div class="demo-inner">
+            <div class="demo-panel">
+              <p class="demo-blurb">This runs real pixel-level detection in your browser — thresholding, connected components, and centroid fitting on a freshly generated synthetic field, same idea as the Python pipeline.</p>
+              <div class="chip-row">
+                <button class="chip-btn" id="star-regen">Generate new field</button>
+                <button class="chip-btn" id="star-detect">Run detection</button>
+              </div>
+              <div class="legend">
+                <span><span class="sw" style="background:var(--acc-star)"></span>star source</span>
+                <span><span class="sw" style="background:var(--acc-poc)"></span>moving streak</span>
+              </div>
+              <div class="canvas-wrap">
+                <canvas id="star-base" width="480" height="220"></canvas>
+                <canvas id="star-overlay" class="overlay" width="480" height="220"></canvas>
+              </div>
+              <div class="status-line" id="star-status">Field ready. Run detection to localise sources.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 4: samrat -->
+  <article class="project" style="--accent:var(--acc-chat)">
+    <div class="project-top">
+      <div class="project-log">LOG 04</div>
+      <div>
+        <div class="title-row">
+          <h3 class="project-title">Samrat — WhatsApp Sales Analytics Bot</h3>
+          <span class="badge">interactive demo</span>
+        </div>
+        <p class="project-desc">
+          A WhatsApp chatbot that turns plain-English sales questions into SQL, so
+          a manager can ask for totals, filters, or rankings without opening a
+          spreadsheet. Flask and Twilio handle the WhatsApp side; the model's job
+          is strictly translation, not analysis, so every answer stays grounded in
+          the underlying rows.
+        </p>
+        <div class="project-meta">
+          <div class="stack"><span>Python</span><span>Flask</span><span>Twilio</span><span>SQLite</span></div>
+          <div class="actions">
+            <button class="demo-toggle" data-target="demo-chat">Try the demo <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <a class="project-link" href="https://github.com/Arpithasp-22/samrat_twilio_chatbot" target="_blank" rel="noopener">View code ↗</a>
+          </div>
+        </div>
+
+        <div class="demo-wrap" id="demo-chat">
+          <div class="demo-inner">
+            <div class="demo-panel">
+              <p class="demo-blurb">Queries here run against a small sample dataset embedded in this page with plain array math — a simplified stand-in for the real SQL + intent layer.</p>
+              <div class="chat-box" id="chat-box">
+                <div class="msg bot">Hi — ask me about sales, e.g. totals, top products, or a region.</div>
+              </div>
+              <div class="chip-row">
+                <button class="chip-btn" data-q="total">Total sales this month</button>
+                <button class="chip-btn" data-q="top">Top 3 products</button>
+                <button class="chip-btn" data-q="region">Sales in Karnataka</button>
+                <button class="chip-btn" data-q="least">Least sold product</button>
+              </div>
+              <div class="chat-input-row">
+                <input type="text" id="chat-input" placeholder="Type a question…">
+                <button class="chat-send" id="chat-send">Ask</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 5: babydino -->
+  <article class="project" style="--accent:var(--acc-poc)">
+    <div class="project-top">
+      <div class="project-log">LOG 05</div>
+      <div>
+        <div class="title-row">
+          <h3 class="project-title">AI Product Improvement — Three POCs</h3>
+          <span class="badge">interactive demo</span>
+        </div>
+        <p class="project-desc">
+          Three self-contained prototypes built for an AI internship assignment,
+          each targeting a weak point in an existing product: a colour-analysis
+          tool made robust to inconsistent lighting, a personalised fashion-trend
+          ranker, and an adaptive learning engine that estimates learner mastery.
+        </p>
+        <div class="project-meta">
+          <div class="stack"><span>Python</span><span>OpenCV</span><span>Streamlit</span></div>
+          <div class="actions">
+            <button class="demo-toggle" data-target="demo-poc">Try the demo <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <a class="project-link" href="https://github.com/Arpithasp-22/babydino_assignment" target="_blank" rel="noopener">View code ↗</a>
+          </div>
+        </div>
+
+        <div class="demo-wrap" id="demo-poc">
+          <div class="demo-inner">
+            <div class="demo-panel">
+              <div class="tab-row">
+                <button class="tab-btn active" data-tab="colour">Colour correction</button>
+                <button class="tab-btn" data-tab="trend">Trend ranking</button>
+              </div>
+
+              <div class="tab-panel active" id="tab-colour">
+                <p class="demo-blurb">A garment photographed under warm indoor light, then corrected back toward its true colour.</p>
+                <div class="swatch-row">
+                  <div class="swatch"><div class="lbl">True colour</div><div class="box" style="background:#c0392b"></div><div class="hex">#C0392B</div></div>
+                  <div class="swatch"><div class="lbl">As captured</div><div class="box" id="sw-captured" style="background:#c0392b"></div><div class="hex" id="hex-captured">#C0392B</div></div>
+                  <div class="swatch"><div class="lbl">Corrected</div><div class="box" id="sw-corrected" style="background:#c0392b"></div><div class="hex" id="hex-corrected">#C0392B</div></div>
+                </div>
+                <div class="slider-row">
+                  <div class="slabel"><span>Correction strength</span><b id="v-correct">0%</b></div>
+                  <input type="range" min="0" max="100" value="0" id="s-correct">
+                </div>
+                <div class="status-line" id="colour-status">Colour error vs. true garment: —</div>
+              </div>
+
+              <div class="tab-panel" id="tab-trend">
+                <p class="demo-blurb">Every trend has a novelty score and a popularity score. Shift the weighting and watch the ranking re-sort live.</p>
+                <div class="slider-row">
+                  <div class="slabel"><span>Popularity</span><b id="v-weight">Balanced</b><span>Novelty</span></div>
+                  <input type="range" min="0" max="100" value="50" id="s-weight">
+                </div>
+                <ul class="trend-list" id="trend-list"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PROJECT 6: grounded RAG assistant -->
+  <article class="project" style="--accent:var(--acc-rag)">
+    <div class="project-top">
+      <div class="project-log">LOG 06</div>
+      <div>
+        <div class="title-row">
+          <h3 class="project-title">Grounded RAG Assistant</h3>
+          <span class="badge">interactive demo</span>
+        </div>
+        <p class="project-desc">
+          A retrieval-augmented Q&amp;A system over LLM hallucination-detection research,
+          with a deterministic groundedness checker sitting between the model and the
+          user. The LLM is allowed to write the answer; a separate, non-LLM scorer checks
+          every sentence against the retrieved evidence and flags anything unsupported —
+          the model never gets to grade its own homework.
+        </p>
+        <div class="project-meta">
+          <div class="stack"><span>Python</span><span>scikit-learn</span><span>Streamlit</span><span>OpenAI API</span></div>
+          <div class="actions">
+            <button class="demo-toggle" data-target="demo-rag">Try the demo <svg viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.6"/></svg></button>
+            <a class="project-link" href="https://github.com/Arpithasp-22/grounded_RAG" target="_blank" rel="noopener">View code ↗</a>
+          </div>
+        </div>
+
+        <div class="demo-wrap" id="demo-rag">
+          <div class="demo-inner">
+            <div class="demo-panel">
+              <p class="demo-blurb">This runs a simplified version of the real pipeline — TF-IDF retrieval and sentence-level grounding — entirely in your browser, no backend or API key required. The full repo adds an LLM generation step with the same grounding check on top.</p>
+              <div class="chip-row">
+                <button class="chip-btn" data-rag-q="How can you detect hallucinations without access to model internals?">Detect without internals?</button>
+                <button class="chip-btn" data-rag-q="How does semantic entropy differ from measuring uncertainty over raw tokens?">Semantic entropy?</button>
+                <button class="chip-btn" data-rag-q="What is the difference between intrinsic and extrinsic hallucination?">Intrinsic vs extrinsic?</button>
+              </div>
+              <div class="chat-input-row" style="margin-bottom:16px;">
+                <input type="text" id="rag-input" placeholder="Ask about hallucination-detection research…">
+                <button class="chat-send" id="rag-send" style="background:var(--acc-rag)">Ask</button>
+              </div>
+              <div class="status-line" id="rag-status">Ask a question to retrieve and check evidence.</div>
+              <div id="rag-answer"></div>
+              <div id="rag-metrics"></div>
+              <div id="rag-sources"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="section" id="about">
+  <div class="section-head"><h2 class="section-title">About</h2></div>
+  <div class="about-text">
+    <p class="thesis">
+      Across these projects the same instinct shows up: don't trust a system just
+      because it sounds confident — measure it, score it, and make the reasoning
+      visible. That habit didn't start with AI.
+    </p>
+    <p>
+      My path here started in biology, not code — a bachelor's in
+      Biotechnology, then a master's in Biomedical Genetics, working as a data
+      science intern at Manipal Hospitals on genetic counselling data: curating
+      and validating 500+ patient cases and contributing to a condition-prediction
+      model that improved diagnostic accuracy by roughly 5%. That same instinct
+      for careful, checkable evidence carried straight into a second master's
+      in Data Science and then into an AI/ML internship at ParadigmIT, where I
+      built production LLM systems — a RAG pipeline querying over 1,000+ document
+      chunks, a hallucination-detection and guardrails framework, and an
+      evaluation benchmark covering 300+ prompts for accuracy, refusal behaviour,
+      and latency.
+    </p>
+    <p>
+      The throughline has stayed consistent even as the domain changed: I treat
+      a confident-sounding answer — whether it's a diagnostic model or an LLM —
+      with the same skepticism a clinical dataset deserves, and I'd rather build
+      the guardrails, evaluation harnesses, and scoring engines to prove it's
+      right than just hope it is.
+    </p>
+    <p>
+      Away from the screen: painting, cycling, gym sessions, and baking —
+      possibly the only place where getting the measurements exactly right
+      actually is the whole point.
+    </p>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="section-head"><h2 class="section-title">Toolkit</h2></div>
+  <div class="skills-grid">
+    <div class="skill-group"><h3>Data analysis</h3><p>Data cleaning, data validation, exploratory analysis, feature analysis, predictive analytics</p></div>
+    <div class="skill-group"><h3>Programming / querying</h3><p>Python, SQL, Pandas, NumPy</p></div>
+    <div class="skill-group"><h3>Visualization / BI</h3><p>Power BI, Tableau, Apache Superset</p></div>
+    <div class="skill-group"><h3>Machine learning</h3><p>scikit-learn, PyTorch, classification, model evaluation</p></div>
+    <div class="skill-group"><h3>AI / NLP</h3><p>OpenAI API, RAG, semantic search, LLM evaluation, prompt engineering</p></div>
+    <div class="skill-group"><h3>Tools / integration</h3><p>Git, GitHub, Streamlit, REST APIs, webhooks, Twilio API</p></div>
+  </div>
+</section>
+
+<footer id="contact">
+  <h2 class="section-title">Get in touch</h2>
+  <p>Open to opportunities in applied AI/ML, LLM engineering, and RAG systems. Reach out directly — happy to talk through any of the work above.</p>
+  <div class="contact-links">
+    <a href="tel:+919036600009">+91 90366 00009</a>
+    <a href="mailto:arpithasp08@gmail.com">arpithasp08@gmail.com</a>
+  </div>
+  <div class="foot-note">Built from a living GitHub — last synced manually, updated as new work ships.</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  /* ---------- accordion toggles ---------- */
+  document.querySelectorAll('.demo-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var wrap = document.getElementById(btn.dataset.target);
+      var open = wrap.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.firstChild.textContent = open ? 'Hide the demo ' : 'Try the demo ';
+    });
+  });
+
+  /* ================= LOG 01 — Eval framework ================= */
+  var evalData = {
+    gpt4o:  {name:'GPT-4o-mini',        accuracy:91, hallucination:4,  refusal:3, latency:810},
+    gemini: {name:'Gemini Flash',        accuracy:88, hallucination:6,  refusal:2, latency:540},
+    llama:  {name:'Local Llama-3-8B',    accuracy:76, hallucination:13, refusal:5, latency:1950}
+  };
+  var evalStatus = document.getElementById('eval-status');
+  var evalBars = document.getElementById('eval-bars');
+  document.querySelectorAll('#eval-picker .chip-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('#eval-picker .chip-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      var d = evalData[btn.dataset.model];
+      evalStatus.textContent = 'Running golden dataset against ' + d.name + '…';
+      evalBars.innerHTML = '';
+      setTimeout(function(){
+        evalStatus.textContent = 'Run complete — ' + d.name + ' vs. golden dataset (sample run)';
+        var rows = [
+          {label:'Accuracy', val:d.accuracy, max:100, unit:'%'},
+          {label:'Hallucination', val:d.hallucination, max:100, unit:'%'},
+          {label:'Refusal rate', val:d.refusal, max:100, unit:'%'},
+          {label:'Latency p95', val:d.latency, max:2000, unit:'ms'}
+        ];
+        rows.forEach(function(r){
+          var row = document.createElement('div');
+          row.className = 'bar-row';
+          row.innerHTML = '<div class="lbl">'+r.label+'</div><div class="bar-track"><div class="bar-fill"></div></div><div class="bar-val">'+r.val+r.unit+'</div>';
+          evalBars.appendChild(row);
+          setTimeout(function(){ row.querySelector('.bar-fill').style.width = Math.min(100,(r.val/r.max)*100)+'%'; }, 30);
+        });
+      }, 650);
+    });
+  });
+
+  /* ================= LOG 02 — Health agent ================= */
+  var dims = ['schedule','execution','milestones','blockers'];
+  var weights = {schedule:0.35, execution:0.30, milestones:0.20, blockers:0.15};
+  var reasons = {
+    schedule:'behind pace against the plan',
+    execution:'tasks running past their end date',
+    milestones:'key milestones slipping',
+    blockers:'unresolved blockers piling up'
+  };
+  function updateHealth(){
+    var vals = {};
+    dims.forEach(function(k){
+      var el = document.getElementById('s-'+k);
+      vals[k] = parseInt(el.value,10);
+      document.getElementById('v-'+k).textContent = vals[k];
+    });
+    var overall = 0;
+    dims.forEach(function(k){ overall += vals[k]*weights[k]; });
+    overall = Math.round(overall);
+
+    var rag, color;
+    if(overall>=70){rag='Green'; color='var(--green)';}
+    else if(overall>=40){rag='Amber'; color='var(--amber)';}
+    else {rag='Red'; color='var(--red)';}
+
+    var badge = document.getElementById('rag-badge');
+    badge.style.color = color;
+    badge.style.border = '1px solid '+color;
+    badge.style.background = 'color-mix(in srgb, '+color+' 14%, transparent)';
+    badge.querySelector('.dot').style.background = color;
+    document.getElementById('rag-label').textContent = rag + ' · ' + overall + '/100';
+
+    var lowestKey = dims.reduce(function(a,b){ return vals[a] <= vals[b] ? a : b; });
+    var pretty = lowestKey.charAt(0).toUpperCase()+lowestKey.slice(1);
+    document.getElementById('rag-explain').textContent =
+      'Held back mainly by ' + pretty + ' (' + vals[lowestKey] + ') — ' + reasons[lowestKey] + '.';
+
+    var spread = Math.max.apply(null, dims.map(function(k){return vals[k];})) - Math.min.apply(null, dims.map(function(k){return vals[k];}));
+    var confidence = Math.max(55, 100 - Math.round(spread*0.4));
+    document.getElementById('rag-conf').textContent = 'Confidence ' + confidence + '% — lower when dimensions disagree sharply.';
+  }
+  dims.forEach(function(k){ document.getElementById('s-'+k).addEventListener('input', updateHealth); });
+  updateHealth();
+
+  /* ================= LOG 03 — Star tracker ================= */
+  var baseCanvas = document.getElementById('star-base');
+  var overlayCanvas = document.getElementById('star-overlay');
+  var bctx = baseCanvas.getContext('2d');
+  var octx = overlayCanvas.getContext('2d');
+  var starStatus = document.getElementById('star-status');
+  var W = baseCanvas.width, H = baseCanvas.height;
+
+  function generateField(){
+    octx.clearRect(0,0,W,H);
+    bctx.fillStyle = '#050608';
+    bctx.fillRect(0,0,W,H);
+
+    // faint noise
+    for(var i=0;i<260;i++){
+      var nx = Math.random()*W, ny = Math.random()*H;
+      var na = Math.random()*0.12;
+      bctx.fillStyle = 'rgba(200,205,215,'+na+')';
+      bctx.fillRect(nx,ny,1,1);
+    }
+
+    // stars
+    var starCount = 9 + Math.floor(Math.random()*5);
+    for(var s=0;s<starCount;s++){
+      var sx = 24+Math.random()*(W-48), sy = 24+Math.random()*(H-48);
+      var peak = 0.65+Math.random()*0.35;
+      var radius = 7+Math.random()*5;
+      var grad = bctx.createRadialGradient(sx,sy,0,sx,sy,radius);
+      grad.addColorStop(0,'rgba(255,255,255,'+peak+')');
+      grad.addColorStop(0.4,'rgba(255,255,255,'+(peak*0.5)+')');
+      grad.addColorStop(1,'rgba(255,255,255,0)');
+      bctx.fillStyle = grad;
+      bctx.beginPath(); bctx.arc(sx,sy,radius,0,Math.PI*2); bctx.fill();
+    }
+
+    // one streak
+    var ang = Math.random()*Math.PI*2;
+    var len = 40+Math.random()*50;
+    var cx = 60+Math.random()*(W-120), cy = 60+Math.random()*(H-120);
+    var x1 = cx-Math.cos(ang)*len/2, y1 = cy-Math.sin(ang)*len/2;
+    var x2 = cx+Math.cos(ang)*len/2, y2 = cy+Math.sin(ang)*len/2;
+    bctx.strokeStyle = 'rgba(255,255,255,0.55)';
+    bctx.lineWidth = 4;
+    bctx.lineCap = 'round';
+    bctx.shadowColor = 'rgba(255,255,255,0.5)';
+    bctx.shadowBlur = 6;
+    bctx.beginPath(); bctx.moveTo(x1,y1); bctx.lineTo(x2,y2); bctx.stroke();
+    bctx.shadowBlur = 0;
+
+    starStatus.textContent = 'New field generated. Run detection to localise sources.';
+  }
+
+  function detectSources(){
+    octx.clearRect(0,0,W,H);
+    var img = bctx.getImageData(0,0,W,H).data;
+    var threshold = 90;
+    var visited = new Uint8Array(W*H);
+
+    function lum(i){ var o=i*4; return 0.299*img[o]+0.587*img[o+1]+0.114*img[o+2]; }
+
+    var comps = [];
+    for(var y=0;y<H;y++){
+      for(var x=0;x<W;x++){
+        var idx = y*W+x;
+        if(visited[idx]) continue;
+        if(lum(idx) < threshold){ visited[idx]=1; continue; }
+        // BFS
+        var stack=[idx]; visited[idx]=1;
+        var pts=[]; var wsum=0, xsum=0, ysum=0;
+        var minx=x,maxx=x,miny=y,maxy=y;
+        while(stack.length){
+          var cur = stack.pop();
+          var cx = cur % W, cy = (cur/W)|0;
+          var w = lum(cur);
+          pts.push(cur); wsum+=w; xsum+=cx*w; ysum+=cy*w;
+          if(cx<minx)minx=cx; if(cx>maxx)maxx=cx; if(cy<miny)miny=cy; if(cy>maxy)maxy=cy;
+          var candidates = [];
+          if(cx>0) candidates.push(cur-1);
+          if(cx<W-1) candidates.push(cur+1);
+          if(cy>0) candidates.push(cur-W);
+          if(cy<H-1) candidates.push(cur+W);
+          for(var n=0;n<candidates.length;n++){
+            var ni = candidates[n];
+            if(!visited[ni] && lum(ni)>=threshold){ visited[ni]=1; stack.push(ni); }
+          }
+        }
+        if(pts.length>=3){
+          comps.push({
+            cx: xsum/wsum, cy: ysum/wsum,
+            w: maxx-minx+1, h: maxy-miny+1,
+            n: pts.length
+          });
+        }
+      }
+    }
+
+    var starCount=0, streakCount=0, rejected=0;
+    comps.forEach(function(c){
+      var aspect = Math.max(c.w,c.h)/Math.max(1,Math.min(c.w,c.h));
+      var isStreak = aspect > 2.4 && c.n > 10;
+      var color = isStreak ? getComputedStyle(document.documentElement).getPropertyValue('--acc-poc') : getComputedStyle(document.documentElement).getPropertyValue('--acc-star');
+      if(isStreak) streakCount++; else starCount++;
+      octx.strokeStyle = color.trim();
+      octx.lineWidth = 1.4;
+      var s = 7;
+      octx.beginPath();
+      octx.moveTo(c.cx-s, c.cy); octx.lineTo(c.cx+s, c.cy);
+      octx.moveTo(c.cx, c.cy-s); octx.lineTo(c.cx, c.cy+s);
+      octx.stroke();
+      octx.beginPath(); octx.arc(c.cx,c.cy,9,0,Math.PI*2); octx.stroke();
+    });
+
+    starStatus.textContent = 'Detected ' + starCount + ' star source(s), ' + streakCount + ' streak(s) — sub-pixel centroids marked.';
+  }
+
+  document.getElementById('star-regen').addEventListener('click', generateField);
+  document.getElementById('star-detect').addEventListener('click', detectSources);
+  generateField();
+
+  /* ================= LOG 04 — Sales chatbot ================= */
+  var sales = [
+    {product:'Solar Inverter', region:'Karnataka', month:'Jun', amount:184000},
+    {product:'Battery Pack', region:'Karnataka', month:'Jun', amount:96000},
+    {product:'Charge Controller', region:'Karnataka', month:'Jun', amount:41000},
+    {product:'Smart Meter', region:'Karnataka', month:'Jun', amount:58000},
+    {product:'Solar Inverter', region:'Maharashtra', month:'Jun', amount:221000},
+    {product:'Battery Pack', region:'Maharashtra', month:'Jun', amount:132000},
+    {product:'Charge Controller', region:'Maharashtra', month:'Jun', amount:37000},
+    {product:'Smart Meter', region:'Maharashtra', month:'Jun', amount:64000},
+    {product:'Solar Inverter', region:'Delhi', month:'Jun', amount:99000},
+    {product:'Battery Pack', region:'Delhi', month:'Jun', amount:71000},
+    {product:'Charge Controller', region:'Delhi', month:'Jun', amount:22000},
+    {product:'Smart Meter', region:'Delhi', month:'Jun', amount:33000},
+    {product:'Solar Inverter', region:'Tamil Nadu', month:'Jun', amount:156000},
+    {product:'Battery Pack', region:'Tamil Nadu', month:'Jun', amount:88000},
+    {product:'Charge Controller', region:'Tamil Nadu', month:'Jun', amount:19000},
+    {product:'Smart Meter', region:'Tamil Nadu', month:'Jun', amount:47000}
+  ];
+  function inr(n){ return '₹' + n.toLocaleString('en-IN'); }
+  function groupSum(key){
+    var m = {};
+    sales.forEach(function(r){ m[r[key]] = (m[r[key]]||0) + r.amount; });
+    return m;
+  }
+  function answerQuery(kind, raw){
+    if(kind==='total'){
+      var total = sales.reduce(function(a,r){return a+r.amount;},0);
+      return 'Total sales in Jun across all regions: ' + inr(total) + '.';
+    }
+    if(kind==='top'){
+      var byProduct = groupSum('product');
+      var sorted = Object.keys(byProduct).map(function(k){return {k:k,v:byProduct[k]};}).sort(function(a,b){return b.v-a.v;});
+      var top3 = sorted.slice(0,3).map(function(x,i){return (i+1)+'. '+x.k+' — '+inr(x.v);}).join('\n');
+      return 'Top 3 products by revenue:\n' + top3;
+    }
+    if(kind==='region'){
+      var region = 'Karnataka';
+      var m = /karnataka|maharashtra|delhi|tamil ?nadu/i.exec(raw||'');
+      if(m) region = m[0].replace(/\b\w/g, function(c){return c.toUpperCase();}).replace('tamil nadu','Tamil Nadu');
+      var rowsR = sales.filter(function(r){return r.region.toLowerCase()===region.toLowerCase();});
+      var sum = rowsR.reduce(function(a,r){return a+r.amount;},0);
+      return 'Sales in ' + region + ' this month: ' + inr(sum) + ' across ' + rowsR.length + ' product lines.';
+    }
+    if(kind==='least'){
+      var byP = groupSum('product');
+      var minK = Object.keys(byP).reduce(function(a,b){return byP[a]<byP[b]?a:b;});
+      return 'Lowest-selling product this month: ' + minK + ' at ' + inr(byP[minK]) + '.';
+    }
+    return "I can answer totals, top products, least-sold products, or sales by region (try Karnataka, Maharashtra, Delhi, Tamil Nadu).";
+  }
+  var chatBox = document.getElementById('chat-box');
+  function pushMsg(text, who){
+    var d = document.createElement('div');
+    d.className = 'msg ' + who;
+    d.style.whiteSpace = 'pre-line';
+    d.textContent = text;
+    chatBox.appendChild(d);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+  function handleQuestion(qText, kindHint){
+    pushMsg(qText, 'user');
+    var kind = kindHint;
+    if(!kind){
+      var lower = qText.toLowerCase();
+      if(/top|best|highest/.test(lower)) kind='top';
+      else if(/least|lowest|worst/.test(lower)) kind='least';
+      else if(/karnataka|maharashtra|delhi|tamil/.test(lower)) kind='region';
+      else if(/total|overall|sum/.test(lower)) kind='total';
+    }
+    setTimeout(function(){ pushMsg(answerQuery(kind, qText), 'bot'); }, 400);
+  }
+  document.querySelectorAll('#demo-chat .chip-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var labels = {total:'Total sales this month', top:'Top 3 products', region:'Sales in Karnataka', least:'Least sold product'};
+      handleQuestion(labels[btn.dataset.q], btn.dataset.q);
+    });
+  });
+  document.getElementById('chat-send').addEventListener('click', function(){
+    var inp = document.getElementById('chat-input');
+    if(!inp.value.trim()) return;
+    handleQuestion(inp.value.trim(), null);
+    inp.value='';
+  });
+  document.getElementById('chat-input').addEventListener('keydown', function(e){
+    if(e.key==='Enter'){ document.getElementById('chat-send').click(); }
+  });
+
+  /* ================= LOG 05 — Babydino POCs ================= */
+  document.querySelectorAll('#demo-poc .tab-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('#demo-poc .tab-btn').forEach(function(b){b.classList.remove('active');});
+      document.querySelectorAll('#demo-poc .tab-panel').forEach(function(p){p.classList.remove('active');});
+      btn.classList.add('active');
+      document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // colour correction
+  var trueColor = {r:192,g:57,b:41}; // #C0392B
+  var warmCast = {r:255,g:170,b:60};
+  function mix(a,b,t){ return {r:Math.round(a.r+(b.r-a.r)*t), g:Math.round(a.g+(b.g-a.g)*t), b:Math.round(a.b+(b.b-a.b)*t)}; }
+  function toHex(c){ return '#'+[c.r,c.g,c.b].map(function(v){return v.toString(16).padStart(2,'0');}).join('').toUpperCase(); }
+  var captured = mix(trueColor, warmCast, 0.4);
+  document.getElementById('sw-captured').style.background = toHex(captured);
+  document.getElementById('hex-captured').textContent = toHex(captured);
+  function updateColour(){
+    var t = parseInt(document.getElementById('s-correct').value,10)/100;
+    document.getElementById('v-correct').textContent = Math.round(t*100)+'%';
+    var corrected = mix(captured, trueColor, t);
+    document.getElementById('sw-corrected').style.background = toHex(corrected);
+    document.getElementById('hex-corrected').textContent = toHex(corrected);
+    var dist = Math.sqrt(Math.pow(corrected.r-trueColor.r,2)+Math.pow(corrected.g-trueColor.g,2)+Math.pow(corrected.b-trueColor.b,2));
+    var pct = Math.round((dist/441)*100);
+    document.getElementById('colour-status').textContent = 'Colour error vs. true garment: ' + pct + '%';
+  }
+  document.getElementById('s-correct').addEventListener('input', updateColour);
+  updateColour();
+
+  // trend ranking
+  var trends = [
+    {name:'Oversized blazers', novelty:42, popularity:88},
+    {name:'Cargo pants', novelty:35, popularity:80},
+    {name:'Pastel knits', novelty:70, popularity:52},
+    {name:'Chunky sneakers', novelty:30, popularity:74},
+    {name:'Statement belts', novelty:85, popularity:33}
+  ];
+  function renderTrends(){
+    var w = parseInt(document.getElementById('s-weight').value,10)/100;
+    var lbl = document.getElementById('v-weight');
+    lbl.textContent = w<0.4 ? 'More popularity' : (w>0.6 ? 'More novelty' : 'Balanced');
+    var ranked = trends.map(function(t){
+      return {name:t.name, score: Math.round(t.novelty*w + t.popularity*(1-w))};
+    }).sort(function(a,b){ return b.score-a.score; });
+    var list = document.getElementById('trend-list');
+    list.innerHTML = '';
+    ranked.forEach(function(t,i){
+      var li = document.createElement('li');
+      li.className = 'trend-item';
+      li.innerHTML = '<span><span class="rank">#'+(i+1)+'</span> '+t.name+'</span><span class="score">'+t.score+'</span>';
+      list.appendChild(li);
+    });
+  }
+  document.getElementById('s-weight').addEventListener('input', renderTrends);
+  renderTrends();
+
+  /* ================= LOG 06 — Grounded RAG assistant ================= */
+  /* Same idea as the Python repo (TF-IDF retrieval + sentence-level grounding),
+     reimplemented client-side so it runs with no backend and no API key. */
+  var ragPapers = [
+    {id:'selfcheckgpt', title:'SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection', year:2023, url:'https://arxiv.org/abs/2303.08896',
+     text:"SelfCheckGPT detects hallucinated content in LLM output without needing access to the model's internal token probabilities. The method samples several stochastic responses to the same prompt and measures how consistent they are with one another: factual statements tend to repeat across samples, while hallucinated details tend to vary and contradict each other. Because scoring happens at the sentence level, individual ungrounded sentences can be flagged inside an otherwise correct answer."},
+    {id:'ji-survey', title:'Survey of Hallucination in Natural Language Generation', year:2023, url:'https://arxiv.org/abs/2202.03629',
+     text:"This early, widely cited survey organizes hallucination in text-generation systems into intrinsic hallucinations, which directly contradict the source content, and extrinsic hallucinations, which add unverifiable information not supported by the source. It reviews detection and mitigation techniques across summarization, dialogue, and generation tasks broadly."},
+    {id:'huang-survey', title:'A Survey on Hallucination in Large Language Models', year:2025, url:'https://arxiv.org/abs/2311.05232',
+     text:"A comprehensive, LLM-era survey proposing a detailed taxonomy of hallucination causes spanning the full model lifecycle, from pretraining data quality through fine-tuning and alignment. It reviews detection methods, mitigation strategies, benchmark datasets, and evaluation metrics used across the field."},
+    {id:'semantic-entropy', title:'Detecting Hallucinations Using Semantic Entropy', year:2024, url:'https://www.nature.com/articles/s41586-024-07421-0',
+     text:"Introduces semantic entropy, an uncertainty method that clusters sampled generations by whether they express the same meaning rather than whether they are worded identically, then measures entropy over meaning-clusters instead of raw token sequences. Answers with high semantic entropy are flagged as more likely to be confabulated."},
+    {id:'factool', title:'FacTool: Factuality Detection in Generative AI', year:2023, url:'https://arxiv.org/abs/2307.13528',
+     text:"A tool-augmented framework for verifying factual claims in generative AI output across knowledge QA, code generation, math, and scientific writing. Generated text is decomposed into individually checkable claims, and each claim is verified using external tools such as search engines or code interpreters rather than the model's own judgment."},
+    {id:'azaria-mitchell', title:"The Internal State of an LLM Knows When It's Lying", year:2023, url:'https://arxiv.org/abs/2304.13734',
+     text:"Trains a lightweight classifier directly on a language model's internal hidden-state activations to predict whether a generated statement is true or false. Models frequently carry an internal signal distinguishing supported from unsupported claims even when the surface text of both reads equally confidently."},
+    {id:'haloscope', title:'HaloScope: Unlabeled LLM Generations for Detection', year:2024, url:'https://arxiv.org/abs/2409.17504',
+     text:"Proposes training a hallucination detector using large amounts of unlabeled LLM generations rather than costly human-labeled examples. The method exploits structure already present in the model's internal representations to separate truthful from hallucinated generations at scale."},
+    {id:'lm-vs-lm', title:'LM vs LM: Detecting Factual Errors via Cross Examination', year:2023, url:'https://arxiv.org/abs/2305.13281',
+     text:"Frames hallucination detection as an adversarial cross-examination between two language models: one generates a claim, and a second interrogates it with follow-up questions designed to probe for inconsistency. Contradictions surfaced during questioning signal the original claim is likely a factual error."}
+  ];
+
+  var STOPWORDS = new Set(['the','a','an','of','to','in','and','is','are','for','on','with','as','by','that','this','it','its','be','or','from','at','into','was','were','can','which','their','than','then','these','those','not','but','has','have','had','will','would','about','across','over']);
+  function tokenize(text){
+    return text.toLowerCase().replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(function(w){ return w.length>2 && !STOPWORDS.has(w); });
+  }
+
+  var ragDF = {}; // document frequency
+  var ragChunkVecs = []; // {chunk, vec: {term:weight}}
+  (function buildRagIndex(){
+    var tokenized = ragPapers.map(function(p){ return tokenize(p.text); });
+    tokenized.forEach(function(toks){
+      var seen = new Set(toks);
+      seen.forEach(function(t){ ragDF[t] = (ragDF[t]||0) + 1; });
+    });
+    var N = ragPapers.length;
+    ragPapers.forEach(function(p, i){
+      var toks = tokenized[i];
+      var tf = {};
+      toks.forEach(function(t){ tf[t] = (tf[t]||0) + 1; });
+      var vec = {};
+      Object.keys(tf).forEach(function(t){
+        var idf = Math.log(N / ragDF[t]);
+        vec[t] = tf[t] * idf;
+      });
+      ragChunkVecs.push({paper:p, vec:vec});
+    });
+  })();
+
+  function cosineSim(vecA, vecB){
+    var dot=0, normA=0, normB=0;
+    Object.keys(vecA).forEach(function(t){ normA += vecA[t]*vecA[t]; if(vecB[t]) dot += vecA[t]*vecB[t]; });
+    Object.keys(vecB).forEach(function(t){ normB += vecB[t]*vecB[t]; });
+    if(normA===0||normB===0) return 0;
+    return dot / (Math.sqrt(normA)*Math.sqrt(normB));
+  }
+
+  function ragVectorize(text){
+    var toks = tokenize(text);
+    var tf = {};
+    toks.forEach(function(t){ tf[t] = (tf[t]||0) + 1; });
+    var vec = {};
+    var N = ragPapers.length;
+    Object.keys(tf).forEach(function(t){
+      if(!ragDF[t]) return;
+      vec[t] = tf[t] * Math.log(N / ragDF[t]);
+    });
+    return vec;
+  }
+
+  function ragRetrieve(query, topK){
+    var qvec = ragVectorize(query);
+    var scored = ragChunkVecs.map(function(cv){ return {paper:cv.paper, score:cosineSim(qvec, cv.vec)}; });
+    scored.sort(function(a,b){ return b.score-a.score; });
+    return scored.filter(function(s){ return s.score>0; }).slice(0, topK||3);
+  }
+
+  function ragBuildAnswer(results){
+    if(!results.length) return "No relevant excerpts were retrieved for this question.";
+    var parts = ["According to " + results[0].paper.title + " (" + results[0].paper.year + "), " + results[0].paper.text];
+    results.slice(1,3).forEach(function(r){
+      parts.push(r.paper.title + " (" + r.paper.year + ") adds: " + r.paper.text);
+    });
+    return parts.join(' ');
+  }
+
+  function ragSplitSentences(text){
+    return text.split(/(?<=[.!?])\s+/).map(function(s){return s.trim();}).filter(Boolean);
+  }
+
+  function ragScoreGroundedness(answer, results){
+    var threshold = 0.12;
+    var sentences = ragSplitSentences(answer);
+    var report = [];
+    var grounded = 0;
+    sentences.forEach(function(sent){
+      var svec = ragVectorize(sent);
+      var best = 0, bestTitle = null;
+      results.forEach(function(r){
+        var sim = cosineSim(svec, ragChunkVecs.find(function(c){return c.paper.id===r.paper.id;}).vec);
+        if(sim>best){ best=sim; bestTitle=r.paper.title; }
+      });
+      var isGrounded = best >= threshold;
+      if(isGrounded) grounded++;
+      report.push({text:sent, grounded:isGrounded, score:Math.round(best*1000)/1000, source:bestTitle});
+    });
+    return {pct: sentences.length ? Math.round(1000*grounded/sentences.length)/10 : 0, sentences:report};
+  }
+
+  function ragRun(query){
+    if(!query || !query.trim()) return;
+    var statusEl = document.getElementById('rag-status');
+    var answerEl = document.getElementById('rag-answer');
+    var metricsEl = document.getElementById('rag-metrics');
+    var sourcesEl = document.getElementById('rag-sources');
+    statusEl.textContent = 'Retrieving relevant excerpts…';
+    answerEl.innerHTML=''; metricsEl.innerHTML=''; sourcesEl.innerHTML='';
+
+    setTimeout(function(){
+      var t0 = performance.now();
+      var results = ragRetrieve(query, 3);
+      var answer = ragBuildAnswer(results);
+      var grounding = ragScoreGroundedness(answer, results);
+      var latency = Math.round((performance.now()-t0)*10)/10;
+
+      if(!results.length){
+        statusEl.textContent = 'Nothing relevant found in the corpus for that question — try one of the sample questions above.';
+        return;
+      }
+      statusEl.textContent = 'Run complete — TF-IDF retrieval, extractive answer, sentence-level grounding check.';
+
+      var answerBox = document.createElement('div');
+      answerBox.className = 'rag-answer-box';
+      grounding.sentences.forEach(function(s){
+        var span = document.createElement('span');
+        span.className = 'rag-sentence ' + (s.grounded ? 'grounded' : 'ungrounded');
+        span.textContent = s.text + ' ';
+        span.title = s.grounded ? ('grounded · similarity ' + s.score) : 'ungrounded — no supporting excerpt found';
+        answerBox.appendChild(span);
+      });
+      answerEl.appendChild(answerBox);
+
+      metricsEl.innerHTML =
+        '<div class="rag-metric-row">' +
+          '<div class="rag-metric">Groundedness<b>'+grounding.pct+'%</b></div>' +
+          '<div class="rag-metric">Latency<b>'+latency+'ms</b></div>' +
+          '<div class="rag-metric">Mode<b style="font-size:13px;color:var(--ink-dim)">offline (browser demo)</b></div>' +
+        '</div>';
+
+      results.forEach(function(r){
+        var div = document.createElement('div');
+        div.className = 'rag-source-item';
+        div.innerHTML =
+          '<div class="rst">'+r.paper.title+' ('+r.paper.year+') · score '+Math.round(r.score*1000)/1000+'</div>' +
+          '<div class="rsc">'+r.paper.text.slice(0,140)+'…</div>' +
+          '<a href="'+r.paper.url+'" target="_blank" rel="noopener">'+r.paper.url+'</a>';
+        sourcesEl.appendChild(div);
+      });
+    }, 350);
+  }
+
+  document.querySelectorAll('#demo-rag [data-rag-q]').forEach(function(btn){
+    btn.addEventListener('click', function(){ ragRun(btn.dataset.ragQ); });
+  });
+  document.getElementById('rag-send').addEventListener('click', function(){
+    var inp = document.getElementById('rag-input');
+    ragRun(inp.value);
+  });
+  document.getElementById('rag-input').addEventListener('keydown', function(e){
+    if(e.key==='Enter'){ document.getElementById('rag-send').click(); }
+  });
+
+});
+</script>
+</body>
+</html>
